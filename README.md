@@ -1,3 +1,3 @@
 # portfolio
-This is my first repository GitHab !!!
+This is my first repository GitHub !!!
 :coffee:
