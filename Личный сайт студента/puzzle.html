@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset='utf-8'>
+	<title>Личный сайт студента GeekBrains</title>
+	<link rel="stylesheet" href="style.css">
+	<script type="text/javascript">
+
+		var result = 0;
+
+		function AskQuestion(textBoxId, answer)
+		{	
+			var userAnswer = document.getElementById(textBoxId).value;
+			if(textBoxId == "userAnswer3" && userAnswer == 9){
+				userAnswer = "девять";
+				}
+			if(userAnswer.toLowerCase() == answer){
+				result++;
+				}
+
+		}
+
+		function AskQuestions()
+		{
+			AskQuestion("userAnswer1", "буквы");
+			AskQuestion("userAnswer2", "м");
+			AskQuestion("userAnswer3", "девять");
+		
+
+			if(result == 3 || result == 2){
+				alert('Вы угадали ' + result + ' загадки');
+				result = 0;
+			}
+			else if(result == 1){
+				alert('Вы угадали только одну загадку');
+				result = 0;
+			}
+			else{
+				alert('Вы ничего не угадали');
+				result = 0;
+			}
+		}		
+
+	</script>
+</head>
+<body>
+	<div id="header">
+		<a href="index.html">Главная</a><span>/</span>
+		<a href="#">Загадки</a><span>/</span>
+		<a href="guess.html">Угадайка</a><span>/</span>
+		<a href="guess-2.html">Угадайка мультиплеер</a><span>/</span>
+	</div>
+	<div id="content">
+		<h1>Личный сайт студента GeekBrains</h1>
+		<div id="center">	
+			<h3>Игра в загадки</h3>			
+			<div id="box">
+				<p>Чёрные птички на каждой страничке молчат, ожидают, кто их отгадает.</p>
+				<input type="text" id="userAnswer1">
+
+				<p>Давно известно детям всем, корова любит букву ...</p>
+				<input type="text" id="userAnswer2">
+            
+				<p>Цифра шесть перевернулась, новой цифрой обернулась!</p>
+				<input type="text" id="userAnswer3">
+				<br/>
+				<a href="#" onclick="AskQuestions();">Отправить</a>
+			</div>
+		</div>
+	</div>
+
+	<div id="footer">
+		Copyright © 2016 <a href="https://geekbrains.ru/"> GeekBrains </a>
+	</div>
+
+</body>
+</html>

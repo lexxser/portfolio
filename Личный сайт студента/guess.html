@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset='utf-8'>
+	<title>Личный сайт студента GeekBrains</title>
+	<link rel="stylesheet" href="style.css">
+	<script type="text/javascript">
+		
+		function PlayOne() {	
+			// Очищаем игровое поле
+			document.getElementById('guess').innerHTML = '<div class="roundsOneUser"></div><div class="leftOneUser"></div>';
+			var answer = parseInt(Math.random() * 100); // Заносим случайное число в переменную
+			//var answer = parseInt(50); // Заносим случайное число в переменную
+			// Создаем дополнительные переменные
+			var userAnswer = 0, percentMin = 0, percentMax = 0, totalRounds = 5;
+			var user = "";
+			// Функция, на сколько одно число меньше другого
+			function percentMinUser(answer, userAnswer){
+				return percentMin = (answer - userAnswer) / answer * 100;
+			};
+			// Функция, на сколько одно число больше другого
+			function percentMaxUser(answer, userAnswer){
+				return percentMax = (userAnswer - answer) / answer * 100;
+			};
+			// Функция добавления новых блоков
+			function addElemetts (classElements) {
+				document.getElementById('guess').innerHTML+=('<div class=' + classElements + '></div>');
+				}
+
+			for(var tryCount = 1; tryCount <= totalRounds; tryCount++){ // Запускаем цикл проверки (5 попыток)
+				
+				document.querySelectorAll('.roundsOneUser')[tryCount - 1].innerHTML=("Раунд " + tryCount + ":");
+				
+				addElemetts("roundsOneUser");
+				
+				userAnswer = parseInt(prompt("Первый игрок! \nУгадай число от 0 до 100 \nРанее Вы вводили: " + userAnswer)); // Спрашиваем у первого игрока
+		
+				if(userAnswer == answer){ // Если ответ верный идем сюда
+					document.querySelectorAll('.leftOneUser')[tryCount - 1].innerHTML=("Поздравляю, Вы угадали! " + answer + " - это правильный ответ!<hr /><br />");
+					break;
+				}else if(userAnswer < answer){ // Если у первого число меньше, выдаем сообщение и проверяем второго
+					percentMin = percentMinUser(answer, userAnswer); // Вызываем функцию percentMinUser
+					document.querySelectorAll('.leftOneUser')[tryCount - 1].innerHTML=("число " + userAnswer + " отклонение ( < на " + percentMin.toFixed(0) + "% )<hr /><br />");
+					addElemetts("leftOneUser");
+				}else if(userAnswer > answer){ // Если у первого число больше, выдаем сообщение и проверяем второго
+					percentMax = percentMaxUser(answer, userAnswer); // Вызываем функцию percentMaxUser
+					document.querySelectorAll('.leftOneUser')[tryCount - 1].innerHTML=("число " + userAnswer + " отклонение ( > на " + percentMax.toFixed(0) + "% )<hr /><br />");
+					addElemetts("leftOneUser");
+				}else{ // Если первый ввел не число то, выдаем сообщение и проверяем второго
+					document.querySelectorAll('.leftOneUser')[tryCount - 1].innerHTML=("Вы ввели не число<hr /><br />");
+					addElemetts("leftOneUser");
+				}
+			}
+			
+			if(tryCount <= totalRounds){
+				document.querySelectorAll('.roundsOneUser')[tryCount].innerHTML+=("<br />");				
+				}
+			else{ // Показываем загаданное число в случаи проигрыша
+				document.querySelectorAll('.roundsOneUser')[tryCount - 1].innerHTML+=("Увы Вы не угадали. Загаданное число было: " + answer + "<br />");				
+				}
+			// Предлагаем сыграть еще раз
+			document.getElementById('start').innerHTML = "Сыграть еще";
+		}
+	</script>
+</head>
+<body>
+	<div id="header">
+		<a href="index.html">Главная</a><span>/</span>
+		<a href="puzzle.html">Загадки</a><span>/</span>
+		<a href="#">Угадайка</a><span>/</span>
+		<a href="guess-2.html">Угадайка мультиплеер</a><span>/</span>
+	</div>
+	<div id="content">
+		<h1>Личный сайт студента GeekBrains</h1>
+		<div id="center">	
+			<h3>Угадайка</h3>	
+			<div id="box">
+				<p id="leftInfo">Приветствую. У вас будет 5 попыток, чтобы угадать число.</p>
+				<span id="guess"></span>
+				<br />
+				<a id="start" href="#" onclick="PlayOne();">Начать игру</a>
+			</div>
+		</div>
+	</div>
+
+	<div id="footer">
+		Copyright © 2016 <a href="https://geekbrains.ru/"> GeekBrains </a>
+	</div>
+
+</body>
+</html>
