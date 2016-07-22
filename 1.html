@@ -3,4 +3,31 @@
 
   document.write('Мой первый репозиторий!!!');
   
+  // метод рекурсии //
+	
+	//факториал числа (рекурсия)
+	
+	document.write(fact(7) + '<br />');
+	
+	function fact(x){
+		if(x != 1){
+			return fact(x - 1) * x;
+			}
+		else{
+			return x;
+			}
+		}
+	
+	// факториал числа (без рекурсии)
+	
+	document.write(factorial(7) + '<br />');
+	
+	function factorial(x){
+		var facX = 1;
+		for(x; x != 1; x--){
+			facX *= x; 
+			}
+			return facX;
+		}
+  
 </script>
