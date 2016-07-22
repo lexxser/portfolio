@@ -9,8 +9,8 @@
 		function PlayOne() {	
 			// Очищаем игровое поле
 			document.getElementById('guess').innerHTML = '<div class="roundsOneUser"></div><div class="leftOneUser"></div>';
-			var answer = parseInt(Math.random() * 100); // Заносим случайное число в переменную
-			//var answer = parseInt(50); // Заносим случайное число в переменную
+			//var answer = parseInt(Math.random() * 100); // Заносим случайное число в переменную
+			var answer = parseInt(50); // Заносим случайное число в переменную
 			// Создаем дополнительные переменные
 			var userAnswer = 0, percentMin = 0, percentMax = 0, totalRounds = 5;
 			var user = "";
@@ -52,11 +52,8 @@
 				}
 			}
 			
-			if(tryCount <= totalRounds){
-				document.querySelectorAll('.roundsOneUser')[tryCount].innerHTML+=("<br />");				
-				}
-			else{ // Показываем загаданное число в случаи проигрыша
-				document.querySelectorAll('.roundsOneUser')[tryCount - 1].innerHTML+=("Увы Вы не угадали. Загаданное число было: " + answer + "<br />");				
+			if(tryCount > totalRounds){ // Показываем загаданное число в случаи проигрыша
+				document.querySelectorAll('.roundsOneUser')[tryCount - 1].innerHTML+=("Увы Вы не угадали. Загаданное число было: " + answer + "<br />");			
 				}
 			// Предлагаем сыграть еще раз
 			document.getElementById('start').innerHTML = "Сыграть еще";
